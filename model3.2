@@ -1,0 +1,39 @@
+digraph {
+	theta_P [label=theta_P fillcolor=white shape=ellipse style=filled]
+	theta_S [label=theta_S fillcolor=white shape=ellipse style=filled]
+	theta_O [label=theta_O fillcolor=white shape=ellipse style=filled]
+	mean_P_tot [label=mean_P_tot fillcolor=white shape=ellipse style=filled]
+	shape_P_tot [label=shape_P_tot fillcolor=white shape=ellipse style=filled]
+	mean_H_total [label=mean_H_total fillcolor=white shape=ellipse style=filled]
+	gamma_P [label=gamma_P fillcolor=white shape=ellipse style=filled]
+	gamma_D [label=gamma_D fillcolor=white shape=ellipse style=filled]
+	subgraph cluster_workers_plate {
+		label=workers_plate labeljust=r labelloc=b
+		P [label=P fillcolor=gray shape=ellipse style=filled]
+		S [label=S fillcolor=gray shape=ellipse style=filled]
+		O [label=O fillcolor=gray shape=ellipse style=filled]
+	}
+	subgraph cluster_obs_plate {
+		label=obs_plate labeljust=r labelloc=b
+		H_total [label=H_total fillcolor=gray shape=ellipse style=filled]
+		D_alloc [label=D_alloc fillcolor=gray shape=ellipse style=filled]
+	}
+	mean_P_tot -> mean_H_total
+	gamma_P -> gamma_D
+	theta_P -> P
+	theta_S -> S
+	P -> S
+	theta_O -> O
+	P -> O
+	S -> O
+	shape_P_tot -> H_total
+	mean_H_total -> H_total
+	P -> H_total
+	S -> H_total
+	O -> H_total
+	gamma_D -> D_alloc
+	P -> D_alloc
+	S -> D_alloc
+	O -> D_alloc
+	distribution_description_node [label="theta_P ~ Dirichlet\ltheta_S ~ Dirichlet\ltheta_O ~ Dirichlet\lmean_P_tot ~ LogNormal\lshape_P_tot ~ Gamma\lmean_H_total ~ LogNormal\lgamma_P ~ Gamma\lgamma_D ~ Gamma\lP ~ Categorical\lS ~ Categorical\lO ~ Categorical\lH_total ~ Gamma\lD_alloc ~ Dirichlet\l" shape=plaintext]
+}
